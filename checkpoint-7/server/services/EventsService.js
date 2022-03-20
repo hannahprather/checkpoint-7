@@ -8,7 +8,7 @@ class EventsService {
   }
 
   async getOne(id) {
-    const event = await dbContext.Events.findById(id).populate('creator')
+    const event = await dbContext.Events.findById(id).populate('name')
     if (!event) {
       throw new BadRequest('doesnt exist')
     }

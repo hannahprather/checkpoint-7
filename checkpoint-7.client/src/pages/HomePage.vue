@@ -26,7 +26,6 @@
 import { computed } from "@vue/reactivity"
 import { onMounted } from "@vue/runtime-core"
 import { eventsService } from "../services/EventsService"
-import { logger } from "../utils/Logger"
 import { AppState } from "../AppState"
 ``
 export default {
@@ -34,10 +33,11 @@ export default {
   setup() {
     onMounted(async () => {
       await eventsService.getAll()
+      await eventsService.getEventById("62350e2290c581510cf9df3f")
     })
 
     return {
-      // events: computed(() => AppState.events),
+      events: computed(() => AppState.events),
       account: computed(() => AppState.account),
     }
   },

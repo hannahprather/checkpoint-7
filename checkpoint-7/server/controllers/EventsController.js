@@ -8,7 +8,7 @@ export class EventsController extends BaseController {
     super('api/events')
     this.router
       .get('', this.getAll)
-      .get('/:id', this.getOne)
+      .get('/:eventId', this.getOne)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
     // .put('/:id', this.update)
@@ -25,7 +25,7 @@ export class EventsController extends BaseController {
   }
   async getOne(req, res, next) {
     try {
-      const project = await eventsService.getOne(req.params.id)
+      const project = await eventsService.getOne(req.params.eventId)
       return res.send(project)
     } catch (error) {
       next(error)
