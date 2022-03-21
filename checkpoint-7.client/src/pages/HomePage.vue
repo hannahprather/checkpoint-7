@@ -18,6 +18,7 @@
       <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
         Vue 3 Starter
       </h1>
+      <event v-for="e in events" :key="e.eventId" :event="e" />
     </div>
   </div>
 </template>
@@ -27,13 +28,15 @@ import { computed } from "@vue/reactivity"
 import { onMounted } from "@vue/runtime-core"
 import { eventsService } from "../services/EventsService"
 import { AppState } from "../AppState"
-``
+import Event from "../components/Event.vue"
+
 export default {
+  components: { Event },
   name: 'Home',
   setup() {
+
     onMounted(async () => {
       await eventsService.getAll()
-      await eventsService.getEventById("62350e2290c581510cf9df3f")
     })
 
     return {

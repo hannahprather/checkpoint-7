@@ -39,8 +39,27 @@ class EventsService {
       logger.log("get all events error", error)
     }
   }
+  async editEvent(id, editedEvent) {
+    try {
+      await api.put('/api/events/' + id, editedEvent)
+      this.getAll()
+      this.getEventById(id)
+    } catch (error) {
+      logger.log("get all events error", error)
+    }
+  }
 
-
+  async cancelEvent(id, event) {
+    try {
+      await api.delete('/api/event/' + id)
+      event.isCanceled = true
+      AppState.activeEvent = event
+      this.getAll()
+      this.getEventById(id)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
 
 
 }

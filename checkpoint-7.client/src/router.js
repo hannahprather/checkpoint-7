@@ -13,6 +13,8 @@ const routes = [
   },
   {
     path: "/events/:eventId",
+    name: "ActiveEvent",
+    component: loadPage("ActiveEvent")
   },
   {
     path: '/about',

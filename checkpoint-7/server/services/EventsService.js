@@ -22,12 +22,11 @@ class EventsService {
   async remove(id, userId) {
     const event = await this.getOne(id)
     if (event.creatorId.toString() !== userId) {
-      throw new BadRequest('not your project!')
+      throw new BadRequest('not your event dog!')
     }
-
-    // await dbContext.Events.findOneAndRemove(id)
-    await event.remove()
-    return event
+    event.isCanceled = true
+    const updated = await dbContext.Events.findByIdAndUpdate(id, event)
+    return updated
   }
 
   async update(id, body) {

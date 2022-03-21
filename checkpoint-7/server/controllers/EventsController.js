@@ -12,7 +12,7 @@ export class EventsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .put('/:eventId', this.update)
-    // .delete('/:id', this.remove)
+      .delete('/:eventId', this.remove)
   }
 
   async getAll(req, res, next) {
@@ -44,7 +44,7 @@ export class EventsController extends BaseController {
 
   async remove(req, res, next) {
     try {
-      await eventsService.remove(req.params.id, req.userInfo.id)
+      await eventsService.remove(req.params.eventId, req.userInfo.id)
       return res.send('deleted')
     } catch (error) {
       next(error)
