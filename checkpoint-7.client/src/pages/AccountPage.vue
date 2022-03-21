@@ -3,13 +3,16 @@
     <h1>Welcome {{ account.name }}</h1>
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
+    <new-event />
   </div>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import NewEvent from "../components/NewEvent.vue"
 export default {
+  components: { NewEvent },
   name: 'Account',
   setup() {
     return {

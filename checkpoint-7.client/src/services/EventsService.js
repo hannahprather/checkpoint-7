@@ -7,6 +7,7 @@ class EventsService {
     try {
       const res = await api.get('/api/events')
       AppState.events = res.data
+      console.log(AppState.events)
     } catch (error) {
       logger.log("get all events error", error)
     }
@@ -21,14 +22,23 @@ class EventsService {
     }
   }
 
-  // async createEvent() {
-  //   try {
-  //     const res = await api.get('/api/events')
-  //     console.log("EVENTS?: ", res.data);
-  //   } catch (error) {
-  //     logger.log("get all events error", error)
-  //   }
-  // }
+  async deleteEvent(id) {
+    try {
+      const res = await api.delete(`/api/events/${id}`)
+    } catch (error) {
+      logger.log("get one event error", error)
+    }
+  }
+
+  async createEvent(event) {
+    try {
+      const res = await api.post('/api/events', event)
+      AppState.events.push(res.data)
+      this.getAll()
+    } catch (error) {
+      logger.log("get all events error", error)
+    }
+  }
 
 
 
