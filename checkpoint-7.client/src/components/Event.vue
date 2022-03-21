@@ -1,10 +1,12 @@
 <template>
-  <router-link
-    :to="{ name: 'ActiveEvent', params: { eventId: event.id } }"
-    class="text-dark"
-  >
-    <h2 @click="setActive(event.id)">{{ event.name }}</h2>
-  </router-link>
+  <div>
+    <router-link
+      :to="{ name: 'ActiveEvent', params: { eventId: event.id } }"
+      class="text-dark"
+    >
+      <h2 @click="setActive(event.id)">{{ event.name }}</h2>
+    </router-link>
+  </div>
 </template>
 
 

@@ -30,6 +30,11 @@ class EventsService {
   }
 
   async update(id, body) {
+    const foundEvent = await this.getOne(id)
+    if (foundEvent.isCanceled) {
+      throw new BadRequest('event is canceled yo!')
+    }
+    delete body.isCanceled
     return await dbContext.Events.findByIdAndUpdate(id, body)
   }
 
