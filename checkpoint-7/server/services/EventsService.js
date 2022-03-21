@@ -30,5 +30,9 @@ class EventsService {
     return event
   }
 
+  async update(id, body) {
+    return await dbContext.Events.findByIdAndUpdate(id, body)
+  }
+
 }
 export const eventsService = new EventsService()
