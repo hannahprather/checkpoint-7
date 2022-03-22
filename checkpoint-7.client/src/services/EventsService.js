@@ -1,4 +1,5 @@
 import { AppState } from "../AppState";
+import { router } from "../router";
 import { logger } from "../utils/Logger";
 import { api } from "./AxiosService"
 
@@ -34,7 +35,7 @@ class EventsService {
     try {
       const res = await api.post('/api/events', event)
       AppState.events.push(res.data)
-      this.getAll()
+      return res.data
     } catch (error) {
       logger.log("get all events error", error)
     }

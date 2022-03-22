@@ -11,7 +11,7 @@ export class CommentsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .post('', this.create)
-      .delete('/:id', this.remove)
+    // .delete('/:id', this.remove)
   }
 
   async getAll(req, res, next) {

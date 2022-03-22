@@ -27,6 +27,44 @@
           </router-link>
         </li>
       </ul>
+
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModalCenter"
+      >
+        New Event
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content text-dark">
+            <div class="modal-body">
+              <h5>Add a new Event</h5>
+              <new-event />
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / Modal -->
+
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -34,7 +72,9 @@
 </template>
 
 <script>
+import NewEvent from "./NewEvent.vue";
 export default {
+  components: { NewEvent },
   setup() {
     return {};
   },

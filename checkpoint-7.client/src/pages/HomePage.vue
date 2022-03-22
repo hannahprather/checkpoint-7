@@ -1,13 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div
-        v-for="e in events"
-        :key="e.eventId"
-        :event="e"
-        class="col-4 p-4 bg-warning rounded mb-2"
-      />
-      <Event :event="e" />
+      <Event v-for="e in events" :key="e.id" :event="e" />
     </div>
   </div>
 </template>
