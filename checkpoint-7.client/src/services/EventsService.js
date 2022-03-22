@@ -23,14 +23,6 @@ class EventsService {
     }
   }
 
-  async deleteEvent(id) {
-    try {
-      const res = await api.delete(`/api/events/${id}`)
-    } catch (error) {
-      logger.log("get one event error", error)
-    }
-  }
-
   async createEvent(event) {
     try {
       const res = await api.post('/api/events', event)
@@ -52,7 +44,7 @@ class EventsService {
 
   async cancelEvent(id, event) {
     try {
-      await api.delete('/api/event/' + id)
+      await api.delete('/api/events/' + id)
       event.isCanceled = true
       AppState.activeEvent = event
       this.getAll()

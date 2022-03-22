@@ -66,8 +66,8 @@ export class EventsController extends BaseController {
 
   async remove(req, res, next) {
     try {
-      await eventsService.remove(req.params.eventId, req.userInfo.id)
-      return res.send('deleted')
+      const deleted = await eventsService.remove(req.params.eventId, req.userInfo.id)
+      return res.send(deleted)
     } catch (error) {
       next(error)
     }

@@ -20,7 +20,7 @@ class EventsService {
     return event
   }
   async remove(id, userId) {
-    const event = await this.getOne(id)
+    const event = await dbContext.Events.findById(id)
     if (event.creatorId.toString() !== userId) {
       throw new BadRequest('not your event dog!')
     }

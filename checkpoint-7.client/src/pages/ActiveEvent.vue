@@ -4,7 +4,7 @@
     <p>{{ activeEvent.name }}</p>
 
     <EditEventForm />
-    <p>{{ activeEvent.isCanceled }}</p>
+    <p>Canceled: {{ activeEvent.isCanceled }}</p>
   </div>
 </template>
 
