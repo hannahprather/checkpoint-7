@@ -39,6 +39,7 @@ class TicketsService {
   }
 
   async delete(ticketId) {
+    // TODO make sure to pass in the userInfo.id of the person logged in and compare that to the person that created the ticket
     const ticket = await dbContext.Tickets.findById(ticketId)
     await dbContext.Tickets.findByIdAndDelete(ticketId)
     const event = await dbContext.Events.findById(ticket.eventId)

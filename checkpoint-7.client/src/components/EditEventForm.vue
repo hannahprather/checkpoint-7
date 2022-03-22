@@ -1,6 +1,6 @@
 <template>
   <div class="editEventComponent">
-    <form class="form-group" @submit.prevent="editEvent(activeEvent.id)">
+    <form class="form-group" @submit.prevent="editEvent()">
       <input
         type="text"
         class="form-control"
@@ -50,21 +50,28 @@
 import { computed, reactive } from "@vue/reactivity"
 import { AppState } from '../AppState'
 import { eventsService } from "../services/EventsService"
+import { watchEffect } from "@vue/runtime-core"
 export default {
   name: 'EditEventForm',
-  setup() {
+  props: {
+    activeEvent: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
     const state = reactive({
-      editedEvent: {
-      }
+      editedEvent: {}
     })
     const loggedInUser = computed(() => AppState.account)
-
+    watchEffect(() => {
+      state.editedEvent = { ...props.activeEvent }
+    })
     return {
       state,
-      activeEvent: computed(() => AppState.activeEvent),
       loggedInUser,
-      editEvent(id) {
-        eventsService.editEvent(id, state.editedEvent)
+      editEvent() {
+        eventsService.editEvent(state.editedEvent)
       },
       cancelEvent(id, activeEvent) {
         eventsService.cancelEvent(id, activeEvent)

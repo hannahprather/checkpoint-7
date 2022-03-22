@@ -32,11 +32,11 @@ class EventsService {
       logger.log("get all events error", error)
     }
   }
-  async editEvent(id, editedEvent) {
+  async editEvent(editedEvent) {
     try {
-      await api.put('/api/events/' + id, editedEvent)
-      this.getAll()
-      this.getEventById(id)
+      await api.put('/api/events/' + editedEvent.id, editedEvent)
+      // this.getAll()
+      // this.getEventById(id)
     } catch (error) {
       logger.log("get all events error", error)
     }
@@ -63,6 +63,32 @@ class EventsService {
     activeEvent.capacity--
     AppState.activeEvent = activeEvent
 
+  }
+  async createComment(body) {
+    body.eventId = AppState.activeEvent.id
+    const res = await api.post('/api/comments', body)
+    logger.log("new commmmmeeennnttt", res.data)
+    AppState.comments.unshift(res.data)
+  }
+
+  async getEventComments(eventId) {
+    const res = await api.getapi.get(`/api/events/${eventId}/comments`)
+    AppState.comments = res.data
+  }
+  async deleteComments(commentId) {
+    await api.delete(`/api/comments/${commentId}`)
+    const deletedComment = AppState.comments.fileter(c => c.id !== commentId)
+    AppState.comments = deletedComment
+  }
+
+  async getTickets(eventId) {
+    const res = await api.get(`/api/events/${eventId}/tickets`)
+    AppState.tickets = res.data
+  }
+
+  async getMyTickets(userId) {
+    const res = await api.get('account/tickets')
+    AppState.getMyTickets = res.data
   }
 
 }

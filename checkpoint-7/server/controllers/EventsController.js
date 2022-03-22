@@ -75,7 +75,9 @@ export class EventsController extends BaseController {
 
   async update(req, res, next) {
     try {
-      res.send(await eventsService.update(req.params.eventId, req.body))
+      req.body.creatorId = req.userInfo.id
+      req.body.id = req.params.eventId
+      res.send(await eventsService.update(req.body))
     } catch (error) {
       next(error)
     }

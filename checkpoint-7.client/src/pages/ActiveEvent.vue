@@ -8,7 +8,7 @@
         <img :src="activeEvent.coverImg" alt="event pic" />
       </div>
     </div>
-    <EditEventForm />
+    <EditEventForm :activeEvent="activeEvent" />
     <p>Canceled: {{ activeEvent.isCanceled }}</p>
     <p>Capacity: {{ activeEvent.capacity }}</p>
     <button @click="attendEvent(activeEvent.id)" class="text-dark">
