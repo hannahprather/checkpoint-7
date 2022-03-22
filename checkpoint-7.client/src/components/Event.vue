@@ -1,14 +1,20 @@
 <template>
-  <div class="col-5 p-4 bg-warning rounded m-1">
-    <router-link
-      :to="{ name: 'ActiveEvent', params: { eventId: event.id } }"
-      class="text-dark"
+  <div class="col-5 p-4 bg-grey rounded m-1">
+    <div
+      :class="{
+        'strike-through': event.isCanceled === true,
+      }"
     >
-      <h2 @click="setActive(event.id)">{{ event.name }}</h2>
-    </router-link>
-    <p>Start date: {{ new Date(event.startDate).toLocaleString() }}</p>
-    <p>Capacity: {{ event.capacity }}</p>
-    <p>Location: {{ event.location }}</p>
+      <router-link
+        :to="{ name: 'ActiveEvent', params: { eventId: event.id } }"
+        class="text-dark"
+      >
+        <h2 @click="setActive(event.id)">{{ event.name }}</h2>
+      </router-link>
+      <p>Start date: {{ new Date(event.startDate).toLocaleString() }}</p>
+      <p>Capacity: {{ event.capacity }}</p>
+      <p>Location: {{ event.location }}</p>
+    </div>
   </div>
 </template>
 
