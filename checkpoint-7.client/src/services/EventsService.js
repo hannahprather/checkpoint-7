@@ -53,7 +53,17 @@ class EventsService {
       logger.log(error)
     }
   }
+  async attendEvent(id) {
+    const body = {}
+    body.eventId = id
+    const ticketedEvent = await api.post('api/tickets', body)
 
+    AppState.attendees.unshift(ticketedEvent.data)
+    const activeEvent = AppState.activeEvent
+    activeEvent.capacity--
+    AppState.activeEvent = activeEvent
+
+  }
 
 }
 

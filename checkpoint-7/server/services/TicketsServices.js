@@ -29,7 +29,7 @@ class TicketsService {
     })
   }
 
-  async create(ticketData) {
+  async attendEvent(ticketData) {
     const ticket = await dbContext.Tickets.create(ticketData)
     const event = await dbContext.Events.findById(ticket.eventId)
     event.capacity--
@@ -37,6 +37,17 @@ class TicketsService {
     return ticket
 
   }
+
+  async delete(ticketId) {
+    const ticket = await dbContext.Tickets.findById(ticketId)
+    await dbContext.Tickets.findByIdAndDelete(ticketId)
+    const event = await dbContext.Events.findById(ticket.eventId)
+    event.capacity++
+    //NOTE ask about upstairs 
+    await dbContext.Events.findByIdAndUpdate(event.id, event)
+    return 'delorted ticket'
+  }
+
 }
 
 export const ticketsService = new TicketsService()

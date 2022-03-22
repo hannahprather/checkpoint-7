@@ -13,6 +13,30 @@
         :placeholder="activeEvent.description"
         v-model="state.editedEvent.description"
       />
+      <input
+        type="text"
+        class="form-control"
+        :placeholder="activeEvent.coverImg"
+        v-model="state.editedEvent.coverImg"
+      />
+      <input
+        type="text"
+        class="form-control"
+        :placeholder="activeEvent.location"
+        v-model="state.editedEvent.location"
+      />
+      <input
+        type="text"
+        class="form-control"
+        :placeholder="activeEvent.capacity"
+        v-model="state.editedEvent.capacity"
+      />
+      <input
+        type="text"
+        class="form-control"
+        :placeholder="activeEvent.startDate"
+        v-model="state.editedEvent.startDate"
+      />
       <button class="btn btn-block btn-dark" type="submit">Submit</button>
     </form>
 

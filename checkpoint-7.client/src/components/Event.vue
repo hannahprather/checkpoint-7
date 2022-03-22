@@ -26,7 +26,8 @@ export default {
     return {
       setActive(id) {
         eventsService.getEventById(id)
-      }
+      },
+
     }
   }
 }

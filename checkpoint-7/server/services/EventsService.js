@@ -38,5 +38,9 @@ class EventsService {
     return await dbContext.Events.findByIdAndUpdate(id, body)
   }
 
+  async attendEvent(userId) {
+    const user = await dbContext.Events.findById
+  }
+
 }
 export const eventsService = new EventsService()

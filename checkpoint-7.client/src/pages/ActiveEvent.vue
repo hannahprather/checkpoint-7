@@ -5,6 +5,10 @@
 
     <EditEventForm />
     <p>Canceled: {{ activeEvent.isCanceled }}</p>
+    <p>Capacity: {{ activeEvent.capacity }}</p>
+    <button @click="attendEvent(activeEvent.id)" class="text-dark">
+      Attend Event
+    </button>
   </div>
 </template>
 
@@ -25,7 +29,9 @@ export default {
 
     return {
       activeEvent: computed(() => AppState.activeEvent),
-
+      async attendEvent(eventId) {
+        await eventsService.attendEvent(eventId)
+      }
     }
   }
 
