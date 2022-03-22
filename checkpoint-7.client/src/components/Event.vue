@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4 p-4 bg-warning rounded mb-2">
+  <div class="col-5 p-4 bg-warning rounded m-1">
     <router-link
       :to="{ name: 'ActiveEvent', params: { eventId: event.id } }"
       class="text-dark"

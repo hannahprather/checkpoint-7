@@ -1,8 +1,13 @@
 <template>
   <div class="active-event-page">
-    <h1>This is the active event page</h1>
-    <p>{{ activeEvent.name }}</p>
-
+    <div class="row text-center">
+      <h1>{{ activeEvent.name }}</h1>
+    </div>
+    <div class="col-10">
+      <div class="row justify-content-center image-fluid p-3">
+        <img :src="activeEvent.coverImg" alt="event pic" />
+      </div>
+    </div>
     <EditEventForm />
     <p>Canceled: {{ activeEvent.isCanceled }}</p>
     <p>Capacity: {{ activeEvent.capacity }}</p>
